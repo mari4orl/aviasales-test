@@ -12,7 +12,7 @@
   <body>
     <header>
       <div class="container">
-        <img src="img/Logo.png" alt="Логотип самолета" width="60" height="60">
+        <img class="logo" src="img/Logo.png" alt="Логотип самолета" width="60" height="60">
       </div>
     </header>
 
@@ -20,36 +20,77 @@
       <div class="container">
         <div class="filters">
           <p class="filters__header">Количество пересадок</p>
-          <div class="checkbox-container">
-            <label class="checkbox-label">
-              <input class="checkbox" type="checkbox" name="filter" value="all" id="all">
-              <span class="checkbox-title">Все</span>
+          <div class="filters__container">
+            <label class="filters__label">
+              <input class="filters__checkbox" type="checkbox" name="filter" value="all" id="all">
+              <span class="filters__title">Все</span>
             </label>
-            <label class="checkbox-label">
-              <input class="checkbox" type="checkbox" name="filter" value="none" id="none">
-              <span class="checkbox-title">Без пересадок</span>
+            <label class="filters__label">
+              <input class="filters__checkbox" type="checkbox" name="filter" value="none" id="none">
+              <span class="filters__title">Без пересадок</span>
             </label>
-            <label class="checkbox-label">
-              <input class="checkbox" type="checkbox" name="filter" value="1" id="1">
-              <span class="checkbox-title">1 пересадка</span>
+            <label class="filters__label">
+              <input class="filters__checkbox" type="checkbox" name="filter" value="1" id="1">
+              <span class="filters__title">1 пересадка</span>
             </label>
-            <label class="checkbox-label">
-              <input class="checkbox" type="checkbox" name="filter" value="2" id="2">
-              <span class="checkbox-title">2 пересадки</span>
+            <label class="filters__label">
+              <input class="filters__checkbox" type="checkbox" name="filter" value="2" id="2">
+              <span class="filters__title">2 пересадки</span>
             </label>
-            <label class="checkbox-label">
-              <input class="checkbox" type="checkbox" name="filter" value="3" id="3">
-              <span class="checkbox-title">3 пересадки</span>
+            <label class="filters__label">
+              <input class="filters__checkbox" type="checkbox" name="filter" value="3" id="3">
+              <span class="filters__title">3 пересадки</span>
             </label>
           </div>
         </div>
         <div class="wrapper">
           <div class="sort">
-            <button class="sort__cheap">Самый дешевый</button>
-            <button class="sort__fast">Самый быстрый</button>
+            <label class="sort__label">
+              <input class="sort__radio" type="radio" name="sort" value="cheap" id="cheap">
+              <span class="sort__title">Самый дешевый</span>
+            </label>
+            <label class="sort__label">
+              <input class="sort__radio" type="radio" name="sort" value="fast" id="fast">
+              <span class="sort__title">Самый быстрый</span>
+            </label>
           </div>
           <div id="tickets" class="tickets-container">
-
+            <article class="ticket">
+              <div class="ticket__header">
+                <span class="ticket__price">20546 Р </span>
+                <img src="http://pics.avs.io/99/36/SU.png" class="ticket__logo" width="99" height="36" alt="Логотип авиакомпании">
+              </div>
+              <div class="ticket__info">
+                <div class="ticket__segment">
+                  <div class="ticket__block">
+                    <span class="ticket__block-title">MOW – HKT</span>
+                    <span class="ticket__content">15:39 – 10:28</span>
+                  </div>
+                  <div class="ticket__block">
+                    <span class="ticket__block-title">В пути</span>
+                    <span class="ticket__content">21ч 49м</span>
+                  </div>
+                  <div class="ticket__block">
+                    <span class="ticket__block-title">2 пересадки</span>
+                    <span class="ticket__content">DXB, KUL</span>
+                  </div>
+                </div>
+                <div class="ticket__segment">
+                  <div class="ticket__block">
+                    <span class="ticket__block-title">HKT – MOW</span>
+                    <span class="ticket__content">19:11 – 22:56</span>
+                  </div>
+                  <div class="ticket__block">
+                    <span class="ticket__block-title">В пути</span>
+                    <span class="ticket__content">6ч 45м</span>
+                  </div>
+                  <div class="ticket__block">
+                    <span class="ticket__block-title">Без пересадок</span>
+                    <span class="ticket__content"></span>
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
           <button type="button" class="show-more">Показать еще 5 билетов!</button>
         </div>

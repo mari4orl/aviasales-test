@@ -47,8 +47,10 @@ const createSegment = ({origin, destination, date, stops, duration}) => {
 const createTicket = ({price, carrier, segments}) => {
   const template = `
     <article class="ticket">
-      <span class="ticket__price">${price} Р </span>
-      <img src="http://pics.avs.io/99/36/${carrier}.png" class="ticket__logo" width="99" height="36" alt="Логотип авиакомпании">
+      <div class="ticket__header">
+        <span class="ticket__price">${price} Р </span>
+        <img src="http://pics.avs.io/99/36/${carrier}.png" class="ticket__logo" width="99" height="36" alt="Логотип авиакомпании">
+      </div>
       <div class="ticket__info">
         ${
           segments.map((segment) => {
@@ -108,4 +110,4 @@ const fetchAndUpdate = async() => {
   }
 }
 
-fetchAndUpdate();
+// fetchAndUpdate();
