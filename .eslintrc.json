@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "commonjs": true,
+    "jest/globals": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 9
+  },
+  "rules": {
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "time",
+          "timeEnd",
+          "info"
+        ]
+      }
+    ],
+    "object-curly-spacing": [
+      1,
+      "always"
+    ],
+    "no-empty-pattern": 0
+  }
+}
