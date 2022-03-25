@@ -62,6 +62,7 @@ const createTicket = ({price, carrier, segments}) => {
 
   return template
 }
+
 const insertData = (data) => {
   const container = document.getElementById('tickets');
   const template = data.map((ticket) => {
@@ -87,10 +88,10 @@ const request = (URL) => {
 
 const filters = document.querySelectorAll('.filters__checkbox');
 
-const filtersInit = (ticketsArr, filterElem) => {
+const filtersInit = (ticketsArr, filter) => {
   return ticketsArr.filter((ticket) => {
-    const filter = parseInt(filterElem.id);
-    return filter === ticket.segments[0].stops.length
+    const filterId = parseInt(filter.id);
+    return filterId === ticket.segments[0].stops.length && filterId === ticket.segments[1].stops.length
   });
 }
 
@@ -120,6 +121,20 @@ const fastSort = (arr) => {
   return arr;
 };
 
+const renderFilteredTickets = (ticketsArr) => {
+  const filtersArray = [...document.querySelectorAll('.filters__checkbox')];
+  const checkedFilters = filtersArray.filter(filterItem => filterItem.checked);
+  let tickets = [];
+  if (checkedFilters.length != 0) {
+    checkedFilters.forEach(checkedFilter => {
+      tickets = [...tickets, ...filtersInit(ticketsArr, checkedFilter)];
+    })
+    return tickets
+  } else {
+    return ticketsArr
+  }
+}
+
 const fetchAndUpdate = async() => {
   let ticketsArr = [];
   let newTicketsArr = [];
@@ -132,33 +147,23 @@ const fetchAndUpdate = async() => {
   }
 
   filters.forEach(filter => {
-    filter.addEventListener('change', function(){
-      if(filter.checked){
-        const filtersArray = [...document.querySelectorAll('.filters__checkbox')];
-        const checkedFilters = filtersArray.filter(elem => elem.checked);
-        let tickets = [];
-        checkedFilters.forEach(elem => {
-          tickets = [...filtersInit(ticketsArr, elem)];
-        })
-        console.log('array1 ', tickets);
-        tickets = [...filtersInit(tickets, filter)];
-        console.log('array2 ', tickets);
-        sliceArray(tickets);
+    filter.addEventListener('change', function() {
+      const filterAll = document.getElementById('all');
+      // if (filter.id === 'all') {
+      //   sliceArray(ticketsArr);
+      if (!filterAll.checked) {
+        const filteredTickets = renderFilteredTickets(ticketsArr);
+        sliceArray(filteredTickets);
+      } else {
+        sliceArray(ticketsArr);
       }
-    })
+    });
   });
 
   const sortCheap = document.getElementById('cheap');
   const sortFast = document.getElementById('fast');
 
   let cheap = true;
-
-  // const obj = {
-  //   0: false,
-  //   getTest () {
-  //     return this.test
-  //   }
-  // }
 
   const generateArr = async(searchID) => {
     let stop = false;
@@ -170,31 +175,31 @@ const fetchAndUpdate = async() => {
       // sliceArray(sortedArr);
       stop = ticketsResp.stop;
     }
-    return ticketsArr
   }
 
-
   const response = await request(URL);
-  let data = await generateArr(response.searchId);
+  await generateArr(response.searchId);
 
   if (cheap) {
-    let sortedArr = cheapSort(data);
+    let sortedArr = cheapSort(ticketsArr);
     sliceArray(sortedArr);
   } else {
-    let sortedArr = fastSort(data);
+    let sortedArr = fastSort(ticketsArr);
     sliceArray(sortedArr);
   }
 
   sortCheap.addEventListener('change', function() {
     cheap = true;
-    let sortedArr = cheapSort(data);
-    sliceArray(sortedArr);
+    let sortedArr = cheapSort(ticketsArr);
+    const filteredTickets = renderFilteredTickets(sortedArr);
+    sliceArray(filteredTickets);
   });
 
   sortFast.addEventListener('change', function() {
     cheap = false;
-    let sortedArr = fastSort(data);
-    sliceArray(sortedArr);
+    let sortedArr = fastSort(ticketsArr);
+    const filteredTickets = renderFilteredTickets(sortedArr);
+    sliceArray(filteredTickets);
   });
 }
 
