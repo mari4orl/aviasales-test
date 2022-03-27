@@ -163,8 +163,6 @@ const fetchAndUpdate = async() => {
       const ticketsURL = 'https://front-test.beta.aviasales.ru/tickets?searchId=' + searchID;
       const ticketsResp = await request(ticketsURL);
       ticketsArr = [...ticketsArr, ...ticketsResp.tickets];
-      // let sortedArr = cheapSort(ticketsArr);
-      // sliceArray(sortedArr);
       stop = ticketsResp.stop;
     }
   }
