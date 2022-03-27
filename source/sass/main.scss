@@ -126,27 +126,8 @@ body {
 }
 
 .sort__label {
-  border: 1px solid #dfe5ec;
   flex-grow: 1;
   text-align: center;
-
-  cursor: pointer;
-  background-color: #ffffff;
-
-  &:first-child {
-    border-right: 0;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  &:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-
-  &:hover {
-    background-color: #f1fcff;
-  }
 }
 
 .sort__title {
@@ -156,10 +137,25 @@ body {
   text-transform: uppercase;
   display: block;
   padding: 15px;
+  border: 1px solid #dfe5ec;
+  cursor: pointer;
+  background-color: #ffffff;
+
+  &:hover {
+    background-color: #f1fcff;
+  }
 }
 
-.sort__radio:focus + .sort__title {
-  outline: auto;
+.sort__title--border-left {
+  border-right: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.sort__title--border-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 0;
 }
 
 .sort__radio:checked + .sort__title {
