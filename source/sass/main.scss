@@ -11,8 +11,24 @@ body {
   box-sizing: border-box;
 }
 
+.visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 .container {
-  padding: 50px 103px;
+  padding: 0 103px;
   margin: 0 auto;
   display: flex;
   max-width: 960px;
@@ -22,6 +38,8 @@ body {
 
 .logo {
   margin: 0 auto;
+  margin-top: 43px;
+  margin-bottom: 33px;
 }
 
 .filters {
@@ -93,6 +111,10 @@ body {
   border: 1px solid #2196f3;
 }
 
+.filters__checkbox:focus + .filters__title {
+  outline: auto;
+}
+
 .wrapper {
   flex-grow: 1;
 }
@@ -107,7 +129,7 @@ body {
   border: 1px solid #dfe5ec;
   flex-grow: 1;
   text-align: center;
-  padding: 15px;
+
   cursor: pointer;
   background-color: #ffffff;
 
@@ -132,6 +154,17 @@ body {
   font-size: 12px;
   line-height: 20px;
   text-transform: uppercase;
+  display: block;
+  padding: 15px;
+}
+
+.sort__radio:focus + .sort__title {
+  outline: auto;
+}
+
+.sort__radio:checked + .sort__title {
+  background-color: #2196f3;
+  color: #ffffff;
 }
 
 .ticket {
@@ -199,4 +232,8 @@ body {
   line-height: 20px;
   color: #ffffff;
   text-transform: uppercase;
+
+  &:hover {
+    background: #1f88df;
+  }
 }

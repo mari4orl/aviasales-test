@@ -1,10 +1,3 @@
-//TODO to remove
-const stringToHTML = (str) => {
-  const dom = document.createElement('div');
-  dom.innerHTML = str;
-  return dom
-}
-
 const getPeriodPoints = (date, duration) => {
   const dateInstance = new Date(date);
   let startDate = dateInstance.getTime();
@@ -15,9 +8,9 @@ const getPeriodPoints = (date, duration) => {
 }
 
 const getDuration = (duration) => {
-  const durationMilisec = duration*60*1000;
-  const durationInstance = new Date(durationMilisec);
-  return `${durationInstance.getHours()}ч ${durationInstance.getMinutes()}м`
+  const hours = parseInt((duration/60));
+  const minutes = duration - hours*60;
+  return `${hours}ч ${minutes}м`
 }
 
 const getStops = (stops) => {
@@ -108,6 +101,7 @@ const cheapSort = (arr) => {
   return arr;
 };
 
+// Сортирует билеты по общему времени полета (туда-обратно)
 const fastSort = (arr) => {
   for (let i = 1, l = arr.length; i < l; i++) {
       const current = arr[i];
@@ -149,8 +143,6 @@ const fetchAndUpdate = async() => {
   filters.forEach(filter => {
     filter.addEventListener('change', function() {
       const filterAll = document.getElementById('all');
-      // if (filter.id === 'all') {
-      //   sliceArray(ticketsArr);
       if (!filterAll.checked) {
         const filteredTickets = renderFilteredTickets(ticketsArr);
         sliceArray(filteredTickets);
